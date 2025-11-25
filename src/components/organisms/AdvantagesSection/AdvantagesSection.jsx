@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import AboutUsSection from '@/components/organisms/AboutUsSection/AboutUsSection';
-import seostats from '../../../assets/seostats.png';
-import analytics from '../../../assets/analytics.png';
+import seostats from '../../../assets/seostats.webp';
+import analytics from '../../../assets/analytics.webp';
 import './AdvantagesSection.scss';
 
 const AdvantagesSection = () => {

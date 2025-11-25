@@ -96,18 +96,22 @@
   }
 
   &__fields {
-    display: grid;
-    grid-template-columns: 1fr 1fr auto;
+    display: flex;
+    flex-direction: column;
     gap: 16px;
-    align-items: start;
+    align-items: stretch;
 
     @media (max-width: 768px) {
-      grid-template-columns: 1fr;
       gap: 12px;
+    }
+
+    @media (max-width: 480px) {
+      gap: 10px;
     }
   }
 
   &__field {
+    width: 100%;
     display: flex;
     flex-direction: column;
   }
@@ -145,6 +149,7 @@
   }
 
   &__submit {
+    width: 100%;
     padding: 16px 40px;
     background: #ffffff;
     color: #000000;
@@ -155,18 +160,14 @@
     cursor: pointer;
     transition: all 0.3s ease;
     box-shadow: 0 4px 16px rgba(255, 255, 255, 0.2);
-    white-space: nowrap;
-    height: 56px;
 
     @media (max-width: 768px) {
-      width: 100%;
       padding: 14px 32px;
     }
 
     @media (max-width: 480px) {
       padding: 14px 24px;
       font-size: 15px;
-      height: 52px;
     }
 
     &:hover {
@@ -280,5 +281,109 @@
     to {
       stroke-dashoffset: 0;
     }
+  }
+}
+
+// Welcome стили
+.welcome {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #0a0a0a;
+  z-index: 99999999;
+  overflow: hidden;
+  animation: hideOverlay 0.5s ease forwards;
+  animation-delay: 2.5s;
+  pointer-events: none;
+
+  &__circle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 0;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    background: #fff;
+    animation: circleExpand 2.5s ease-in forwards;
+  }
+
+  &__text {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #0a0a0a;
+    font-size: clamp(2.7rem, 5vw, 4.7rem);
+    font-weight: 600;
+    white-space: nowrap;
+    user-select: none;
+  }
+
+  &__text-first {
+    opacity: 0;
+    animation: textFadeInOut 2s ease forwards;
+  }
+
+  &__text-second {
+    opacity: 0;
+    animation: textFadeIn 0.8s ease forwards;
+  }
+}
+
+@keyframes circleExpand {
+  0% {
+    width: 0;
+    opacity: 1;
+  }
+  40% {
+    width: 120vmax;
+    opacity: 1;
+  }
+  100% {
+    width: 220vmax;
+    opacity: 0;
+  }
+}
+
+@keyframes textFadeIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.9) translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes textFadeInOut {
+  0% {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  20% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  80% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+}
+
+@keyframes hideOverlay {
+  to {
+    opacity: 0;
+    visibility: hidden;
   }
 }

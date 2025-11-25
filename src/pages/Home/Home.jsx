@@ -21,9 +21,10 @@ const Home = () => {
       <AboutUsSection />
       <AdvantagesSection />
 {/*       <WorkProcessSection /> */}
+      <ComparisonSection />
       <ProjectsSection />
       <TestimonialsSection />
-      <ComparisonSection />
+
       <BlogSection />
       <FAQSection />
       <ContactFormSection />

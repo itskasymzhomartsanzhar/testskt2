@@ -1,12 +1,37 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './ContactFormSection.scss';
+
+const WelcomeThankYou = () => {
+  const [showSecondText, setShowSecondText] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowSecondText(true);
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  return (
+    <div className="welcome">
+      <div className="welcome__circle"></div>
+      <div className="welcome__text">
+        {!showSecondText ? (
+          <span className="welcome__text-first">Спасибо</span>
+        ) : (
+          <span className="welcome__text-second">SKT Agency</span>
+        )}
+      </div>
+    </div>
+  );
+};
 
 const ContactFormSection = () => {
   const [formData, setFormData] = useState({
     name: '',
     phone: ''
   });
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [showWelcome, setShowWelcome] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -18,31 +43,32 @@ const ContactFormSection = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Здесь логика отправки данных
     console.log('Form submitted:', formData);
-    setIsSubmitted(true);
 
-    // Сброс формы через 3 секунды
+    // Показываем Welcome модалку
+    setShowWelcome(true);
+
+    // Скрываем Welcome модалку и сбрасываем форму через 3 секунды
     setTimeout(() => {
-      setIsSubmitted(false);
+      setShowWelcome(false);
       setFormData({ name: '', phone: '' });
     }, 3000);
   };
 
   return (
-    <section className="contact-form-section">
-      <div className="contact-form-section__container">
-        <div className="contact-form-section__content">
-          <div className="contact-form-section__header">
-            <h2 className="contact-form-section__title">
-              Готовы начать работу?
-            </h2>
-            <p className="contact-form-section__subtitle">
-              Оставьте свои контакты, и мы свяжемся с вами в ближайшее время
-            </p>
-          </div>
+    <>
+      <section className="contact-form-section">
+        <div className="contact-form-section__container">
+          <div className="contact-form-section__content">
+            <div className="contact-form-section__header">
+              <h2 className="contact-form-section__title">
+                Готовы начать работу?
+              </h2>
+              <p className="contact-form-section__subtitle">
+                Оставьте свои контакты, и мы свяжемся с вами в ближайшее время
+              </p>
+            </div>
 
-          {!isSubmitted ? (
             <form className="contact-form-section__form" onSubmit={handleSubmit}>
               <div className="contact-form-section__fields">
                 <div className="contact-form-section__field">
@@ -75,22 +101,12 @@ const ContactFormSection = () => {
                 </button>
               </div>
             </form>
-          ) : (
-            <div className="contact-form-section__success">
-              <div className="success-checkmark">
-                <svg width="64" height="64" viewBox="0 0 24 24" fill="none">
-                  <circle cx="12" cy="12" r="10" fill="currentColor" fillOpacity="0.1"/>
-                  <path d="M7 12L10.5 15.5L17 9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-              </div>
-              <p className="contact-form-section__success-text">
-                Спасибо! Мы свяжемся с вами в ближайшее время
-              </p>
-            </div>
-          )}
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+
+      {showWelcome && <WelcomeThankYou />}
+    </>
   );
 };
 
