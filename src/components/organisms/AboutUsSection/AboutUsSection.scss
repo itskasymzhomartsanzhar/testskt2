@@ -1,0 +1,135 @@
+.aboutus {
+  background: #0a0a0a;
+  display: flex;
+  justify-content: center;
+  padding: 0 2rem;
+  border: 0;
+  position: relative;
+
+  &__container {
+    max-width: 1400px;
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  &__content {
+    text-align: center;
+    max-width: 1000px;
+  }
+
+
+  &__title {
+    font-size: clamp(3rem, 8vw, 7rem);
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 3rem;
+    margin-top: 0;
+    line-height: 1.2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  &__cursor {
+    display: inline-block;
+    width: 4px;
+    height: 1em;
+    background: #ffffff;
+    margin-left: 0.1em;
+    animation: blink 1s step-end infinite;
+  }
+
+  @keyframes blink {
+    0%, 50% {
+      opacity: 1;
+    }
+    51%, 100% {
+      opacity: 0;
+    }
+  }
+
+  &__description {
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.8;
+    max-width: 900px;
+    margin: 0 auto 3rem auto;
+  }
+
+  &__scroll-btn {
+    position: absolute;
+    bottom: 3rem;
+    right: 3rem;
+    width: 60px;
+    height: 60px;
+    background: #ffffff;
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: #000000;
+
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(255, 255, 255, 0.3);
+    }
+
+    svg {
+      width: 24px;
+      height: 24px;
+    }
+
+    @media (max-width: 768px) {
+      width: 50px;
+      height: 50px;
+      bottom: 2rem;
+      right: 2rem;
+
+      svg {
+        width: 20px;
+        height: 20px;
+      }
+    }
+  }
+
+  // Адаптив
+  @media (max-width: 768px) {
+    padding: 3rem 1.5rem;
+
+    &__tag {
+      font-size: 0.85rem;
+      padding: 0.6rem 1.2rem;
+      margin-bottom: 2rem;
+    }
+
+    &__title {
+      margin-bottom: 2rem;
+      font-size: clamp(2rem, 10vw, 5rem);
+    }
+
+    &__description {
+      font-size: 1rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    padding: 2rem 1rem;
+
+    &__title {
+      margin-bottom: 1.5rem;
+    }
+
+    &__description {
+      font-size: 0.95rem;
+    }
+  }
+}

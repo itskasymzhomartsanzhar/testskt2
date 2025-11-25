@@ -1,0 +1,117 @@
+.welcome {
+  position: fixed; /* 👈 чтобы перекрывал всё */
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #0a0a0a;
+  z-index: 99999999;
+  overflow: hidden;
+  animation: hideOverlay 0.5s ease forwards;
+  animation-delay: 2.5s; /* 👈 совпадает с длительностью круга */
+  pointer-events: none; /* после исчезновения не блокирует */
+
+  &__circle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 0;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    background: #fff;
+    animation: circleExpand 2.5s ease-in forwards;
+  }
+
+  &__text {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #0a0a0a;
+    font-size: clamp(2.7rem, 5vw, 4.7rem);
+    font-weight: 600;
+    white-space: nowrap;
+    user-select: none;
+  }
+
+  &__text-first {
+    opacity: 0;
+    animation: textFadeInOut 2s ease forwards;
+  }
+
+  &__text-second {
+    opacity: 0;
+    animation: textFadeIn 0.8s ease forwards;
+  }
+}
+
+/* ====== Анимация круга ====== */
+@keyframes circleExpand {
+  0% {
+    width: 0;
+    opacity: 1;
+  }
+  40% {
+    width: 120vmax;
+    opacity: 1;
+  }
+  100% {
+    width: 220vmax;
+    opacity: 0;
+  }
+}
+
+/* ====== Анимация текста ====== */
+@keyframes textFadeIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.9) translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes textFadeInOut {
+  0% {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  20% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  80% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+}
+
+/* ====== Пропадание черного фона ====== */
+@keyframes hideOverlay {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+.main-content {
+  opacity: 0;
+  animation: showMain 0.8s ease forwards;
+  animation-delay: 2.5s;
+}
+
+@keyframes showMain {
+  to {
+    opacity: 1;
+  }
+}

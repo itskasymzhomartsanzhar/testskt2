@@ -1,0 +1,194 @@
+.navbar {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  padding: 0.2rem 3rem;
+  box-sizing: border-box;
+  background: transparent;
+  pointer-events: none;
+  transition: background-color 0.3s ease, backdrop-filter 0.3s ease;
+
+  &--scrolled {
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+  }
+
+  .navbar__wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+    width: 100%;
+    pointer-events: auto;
+  }
+
+  &__left,
+  &__right {
+    display: flex;
+    align-items: center;
+  }
+
+  /* ===== ТЕКСТ ===== */
+  &__left h1,
+  &__right p,
+  &__right h3 {
+    color: white;
+    mix-blend-mode: difference;
+    transition: color 0.3s ease;
+    user-select: none;
+  }
+
+  &__contacts {
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.1);
+      transform: scale(1.05);
+    }
+  }
+  
+  &__title {
+    cursor: pointer;
+    padding: 0.3rem;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.1);
+      transform: scale(1.05);
+    }
+  }
+
+  /* ===== КНОПКИ ===== */
+  &__start_project,
+  &__menu {
+    mix-blend-mode: difference;
+
+    all: unset;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 0.6rem 1.2rem;
+    gap: 5px;
+    border-radius: 12px;
+    font-weight: 600;
+    border: 2px solid currentColor;
+    background: transparent;
+    color: white; // фиксированный белый
+    text-decoration: none;
+    transition: all 0.3s ease;
+    pointer-events: auto;
+
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+
+  &__right {
+    gap: 1.4rem;
+  }
+
+  /* ===== Адаптив ===== */
+  @media (max-width: 1024px) {
+    padding: 0.8rem 2rem;
+  }
+
+  @media (max-width: 768px) {
+    padding: 0.8rem 1.2rem;
+
+    &__wrapper {
+      flex-direction: row;
+      justify-content: space-between;
+    }
+
+    &__left h1 {
+      font-size: 1.2rem;
+    }
+
+    &__right {
+      flex-wrap: nowrap;
+      gap: 0.6rem;
+
+      p {
+        display: none;
+      }
+
+      h3 {
+        display: none;
+      }
+    }
+
+    &__start_project,
+    &__menu {
+      padding: 0.5rem 0.9rem;
+      font-size: 0.9rem;
+      white-space: nowrap;
+
+      svg {
+        width: 14px;
+        height: 14px;
+      }
+    }
+
+    &__contacts {
+      padding: 0.4rem;
+    }
+
+    &__title {
+      padding: 0.2rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    padding: 0.6rem 1rem;
+
+    &__left h1 {
+      font-size: 1rem;
+    }
+
+    &__right {
+      gap: 0.5rem;
+    }
+
+    &__start_project,
+    &__menu {
+      padding: 0.4rem 0.7rem;
+      font-size: 0.85rem;
+      border-width: 1.5px;
+
+      svg {
+        width: 12px;
+        height: 12px;
+      }
+    }
+  }
+
+  @media (max-width: 360px) {
+    padding: 0.5rem 0.8rem;
+
+    &__left h1 {
+      font-size: 0.9rem;
+    }
+
+    &__right {
+      gap: 0.3rem;
+    }
+
+    &__start_project,
+    &__menu {
+      padding: 0.35rem 0.5rem;
+      font-size: 0.75rem;
+
+      svg {
+        width: 10px;
+        height: 10px;
+      }
+    }
+  }
+}
